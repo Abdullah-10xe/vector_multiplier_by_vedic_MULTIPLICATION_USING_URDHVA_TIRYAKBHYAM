@@ -1,3 +1,6 @@
+
+
+
 module carry_save_adder #(parameter ADDER_WIDTH = 2) (
     input logic [ADDER_WIDTH-1:0] operand_a_csa,  // First operand input (CSA)
     input logic [ADDER_WIDTH-1:0] operand_b_csa,  // Second operand input (CSA)
@@ -22,7 +25,3 @@ module carry_save_adder #(parameter ADDER_WIDTH = 2) (
     endgenerate
   
 endmodule
-
-
-
-

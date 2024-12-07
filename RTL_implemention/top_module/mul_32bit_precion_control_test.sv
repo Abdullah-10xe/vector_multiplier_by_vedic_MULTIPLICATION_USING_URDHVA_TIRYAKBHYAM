@@ -1,9 +1,4 @@
 
-
-
-
-
-
 module test_32_bit_mul();
   logic [1:0] opcode;
   logic [1:0]precision;
@@ -15,6 +10,7 @@ module test_32_bit_mul();
 
   logic [63:0] al;
   int i;
+  logic [15:0] bit_8;
   int fail=0;
   int pass=0;
   mul_32bit_precion_control  mul_dut(.clk(clk),.rst(rst),
@@ -69,6 +65,75 @@ module test_32_bit_mul();
              
            end
            end
+
+
+ if(precision==2'b00)
+           begin
+         bit_8=operand_b_t[7:0]*operand_a_t[7:0];
+         if( bit_8[15:8]==mul_out_32[7:0])
+           begin
+             pass+=1;
+             
+           end
+         else
+           
+           begin
+             fail+=1;
+             
+           end
+           end
+  if(precision==2'b00)
+           begin
+         bit_8=operand_b_t[15:8]*operand_a_t[15:8];
+         if( bit_8[15:8]==mul_out_32[15:8])
+           begin
+             pass+=1;
+             
+           end
+         else
+           
+           begin
+             fail+=1;
+             
+           end
+           end
+        
+  if(precision==2'b00)
+           begin
+         bit_8=operand_b_t[23:16]*operand_a_t[23:16];
+         if( bit_8[15:8]==mul_out_32[15:8])
+           begin
+             pass+=1;
+             
+           end
+         else
+           
+           begin
+             fail+=1;
+             
+           end
+           end
+  
+
+
+
+    if(precision==2'b00)
+           begin
+         bit_8=operand_b_t[31:24]*operand_a_t[31:24];
+         if( bit_8[15:8]==mul_out_32[15:8])
+           begin
+             pass+=1;
+             
+           end
+         else
+           
+           begin
+             fail+=1;
+             
+           end
+           end
+
+
          end
          #100;
        end

@@ -1,4 +1,4 @@
-function two_sc_32bit();
+task two_sc_32bit();
     // Convert operand_b_t to two's complement if negative
     if (operand_b_t[31] == 1'b1) begin
         sign_b[0] = 1'b1; // Set sign for operand B
@@ -14,9 +14,9 @@ function two_sc_32bit();
     end else begin
         sign_a[0] = 1'b0; // Positive sign
     end
-endfunction
+endtask
 
-function two_sc_16bit();
+task two_sc_16bit();
     // Convert operand_b_t to two's complement for lower and upper halves
     if (operand_b_t[15] == 1'b1) begin
         sign_b[0] = 1'b1;
@@ -46,9 +46,9 @@ function two_sc_16bit();
     end else begin
         sign_a[1] = 1'b0;
     end
-endfunction
+  endtask
 
-function tow_s_8();
+task tow_s_8();
     // Convert operand_a_t to two's complement for each byte
     if (operand_a_t[7] == 1'b1) begin
         operand_a_t[7:0] = (~operand_a_t[7:0]) + 1'b1;
@@ -106,11 +106,11 @@ function tow_s_8();
     end else begin
         sign_b[3] = 1'b0;
     end
-endfunction
+  endtask
 
 task mulh();
     // Loop for testing multiplication
-    for (i = 0; i <= 1000; i++) begin
+  for (i = 0; i <= 10000; i++) begin
         operand_b_t = $urandom(); // Random operand B
         operand_a_t = $urandom(); // Random operand A
         precision = $random() / 4; // Random precision value

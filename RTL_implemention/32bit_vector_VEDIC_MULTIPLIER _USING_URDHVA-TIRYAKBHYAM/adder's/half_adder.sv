@@ -1,3 +1,4 @@
+
 module half_adder(
     input logic half_adder_a,       // First input of the half adder
     input logic half_adder_b,       // Second input of the half adder

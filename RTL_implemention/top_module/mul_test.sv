@@ -1,4 +1,4 @@
-function two_sc_32bit();
+task two_sc_32bit_mul();
     // Convert operand_b_t to two's complement if negative
     if (operand_b_t[31] == 1'b1) begin
         sign_b[0] = 1'b1; // Set sign for operand B
@@ -14,9 +14,9 @@ function two_sc_32bit();
     end else begin
         sign_a[0] = 1'b0; // Positive sign
     end
-endfunction
+  endtask
 
-function two_sc_16bit();
+task two_sc_16bit_mul();
     // Convert operand_b_t to two's complement for lower and upper halves
     if (operand_b_t[15] == 1'b1) begin
         sign_b[0] = 1'b1;
@@ -46,9 +46,9 @@ function two_sc_16bit();
     end else begin
         sign_a[1] = 1'b0;
     end
-endfunction
+  endtask
 
-function tow_s_8();
+task tow_s_8_mul();
     // Convert operand_a_t to two's complement for each byte
     if (operand_a_t[7] == 1'b1) begin
         operand_a_t[7:0] = (~operand_a_t[7:0]) + 1'b1;
@@ -86,9 +86,9 @@ function tow_s_8();
         sign_b[0] = 1'b0;
     end
 
-    if (operand_b_t[15] == 1'b1) begin
+       if (operand_b_t[15] == 1'b1) begin
         operand_b_t[15:8] = (~operand_b_t[15:8]) + 1'b1;
-                sign_b[1] = 1'b1;
+        sign_b[1] = 1'b1;
     end else begin
         sign_b[1] = 1'b0;
     end
@@ -106,13 +106,13 @@ function tow_s_8();
     end else begin
         sign_b[3] = 1'b0;
     end
-endfunction
+  endtask
 
-task mulh();
+task mul();
     // Loop for testing multiplication
   for (i = 0; i <= 10000; i++) begin
-        operand_b_t = $urandom(); // Random operand B
-        operand_a_t = $urandom(); // Random operand A
+        operand_b_t = $urandom(); // Generate random operand B
+        operand_a_t = $urandom(); // Generate random operand A
         precision = $random() / 4; // Random precision value
 
         @(posedge clk);
@@ -122,9 +122,9 @@ task mulh();
         @(posedge clk);
         #1;
 
-        if (opcode == 2'b01) begin
+        if (opcode == 2'b00) begin
             if (precision == 2'b10) begin
-                two_sc_32bit(); // Convert to two's complement for 32-bit
+                two_sc_32bit_mul(); // Convert to two's complement for 32-bit
                 al = operand_b_t * operand_a_t; // Perform multiplication
 
                 // Adjust for sign
@@ -133,7 +133,7 @@ task mulh();
                 end
 
                 // Check the result
-                if (al[63:32] == mul_out_32) begin
+                if (al[31:0] == mul_out_32) begin
                     pass += 1; // Increment pass count
                 end else begin
                     fail += 1; // Increment fail count
@@ -142,7 +142,7 @@ task mulh();
             end
 
             if (precision == 2'b00) begin
-                tow_s_8(); // Convert to two's complement for 8-bit
+                tow_s_8_mul(); // Convert to two's complement for 8-bit
                 bit_8 = operand_b_t[7:0] * operand_a_t[7:0]; // Multiply lower 8 bits
 
                 // Adjust for sign
@@ -151,7 +151,7 @@ task mulh();
                 end
 
                 // Check the result
-                if (bit_8[15:8] == mul_out_32[7:0]) begin
+                if (bit_8[7:0] == mul_out_32[7:0]) begin
                     pass += 1;
                 end else begin
                     fail += 1;
@@ -163,7 +163,7 @@ task mulh();
                 if (sign_a[1] ^ sign_b[1]) begin
                     bit_8 = (~bit_8) + 1'b1;
                 end
-                if (bit_8[15:8] == mul_out_32[15:8]) begin
+                if (bit_8[7:0] == mul_out_32[15:8]) begin
                     pass += 1;
                 end else begin
                     fail += 1;
@@ -175,21 +175,21 @@ task mulh();
                 if (sign_a[2] ^ sign_b[2]) begin
                     bit_8 = (~bit_8) + 1'b1;
                 end
-                if (bit_8[15:8] == mul_out_32[23:16]) begin
+                if (bit_8[7:0] == mul_out_32[23:16]) begin
                     pass += 1;
                 end else begin
                     fail += 1;
                     al = operand_b_t[23:16] * operand_a_t[23:16];
+                                        // Check for the third 8 bits
                     $display("3rd 8 bits al_test=%h   mul_out=%h    a=%h    b=%h  a*b_actual=%h", bit_8[15:8], mul_out_32, operand_b_t, operand_a_t, al);
                 end
 
-                // Repeat for the last 
-                                // Repeat for the last 8 bits
+                // Check for the fourth 8 bits
                 bit_8 = operand_b_t[31:24] * operand_a_t[31:24];
                 if (sign_a[3] ^ sign_b[3]) begin
                     bit_8 = (~bit_8) + 1'b1;
                 end
-                if (bit_8[15:8] == mul_out_32[31:24]) begin
+                if (bit_8[7:0] == mul_out_32[31:24]) begin
                     pass += 1;
                 end else begin
                     fail += 1;
@@ -198,7 +198,7 @@ task mulh();
             end
 
             if (precision == 2'b01) begin
-                two_sc_16bit(); // Convert to two's complement for 16-bit
+                two_sc_16bit_mul(); // Convert to two's complement for 16-bit
 
                 // Multiply lower 16 bits
                 bit_16 = operand_b_t[15:0] * operand_a_t[15:0];
@@ -206,12 +206,12 @@ task mulh();
                     bit_16 = (~bit_16) + 1'b1;
                 end
 
-                // Check the result
-                if (bit_16[31:16] == mul_out_32[15:0]) begin
+                // Check the result for lower 16 bits
+                if (bit_16[15:0] == mul_out_32[15:0]) begin
                     pass += 1;
                 end else begin
                     fail += 1;
-                    $display("al_test=%h   mul_out=%h    a=%h    b=%h  a*b_actual=%h", bit_16[31:16], mul_out_32, operand_b_t, operand_a_t, al);
+                    $display("Lower 16 bits al_test=%h   mul_out=%h    a=%h    b=%h  a*b_actual=%h", bit_16[15:0], mul_out_32, operand_b_t, operand_a_t, bit_16);
                 end
 
                 // Multiply upper 16 bits
@@ -220,14 +220,16 @@ task mulh();
                     bit_16 = (~bit_16) + 1'b1;
                 end
 
-                // Check the result
-                if (bit_16[31:16] == mul_out_32[31:16]) begin
+                // Check the result for upper 16 bits
+                if (bit_16[15:0] == mul_out_32[31:16]) begin
                     pass += 1;
                 end else begin
                     fail += 1;
-                    $display("2nd al_test=%h   mul_out=%h    a=%h    b=%h  a*b_actual=%h", bit_16[31:16], mul_out_32, operand_b_t, operand_a_t, bit_16);
+                    $display("Upper 16 bits al_test=%h   mul_out=%h    a=%h    b=%h  a*b_actual=%h", bit_16[15:0], mul_out_32, operand_b_t, operand_a_t, bit_16);
                 end
             end
         end
     end
 endtask
+
+

@@ -1,4 +1,3 @@
-
 module two_bit_multiplier (
     input logic [1:0] a,        // First 2-bit input
     input logic [1:0] b,        // Second 2-bit input

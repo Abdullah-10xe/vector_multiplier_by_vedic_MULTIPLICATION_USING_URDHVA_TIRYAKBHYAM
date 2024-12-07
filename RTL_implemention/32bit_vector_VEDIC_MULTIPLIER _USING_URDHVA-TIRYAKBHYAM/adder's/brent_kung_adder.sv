@@ -15,4 +15,3 @@ module brent_kung_adder #(parameter ADDER_WIDTH = 4,parameter NO_CARRY=1) (
    
   
 endmodule
-

@@ -1,5 +1,5 @@
 // Function to perform two's complement on a 32-bit unsigned operand
-function two_sc_32bitsu();
+task two_sc_32bitsu();
     // Check if the most significant bit (sign bit) is 1
     if (operand_a_t[31] == 1'b1) begin
         sign_a[0] = 1'b1; // Set sign to 1 (negative)
@@ -7,10 +7,10 @@ function two_sc_32bitsu();
     end else begin
         sign_a[0] = 1'b0; // Set sign to 0 (positive)
     end
-endfunction
+endtask
 
 // Function to perform two's complement on a 16-bit unsigned operand
-function two_sc_16bitsu();
+task two_sc_16bitsu();
     // Check the lower 16 bits
     if (operand_a_t[15] == 1'b1) begin
         sign_a[0] = 1'b1; // Set sign for lower 16 bits
@@ -26,10 +26,10 @@ function two_sc_16bitsu();
     end else begin
         sign_a[1] = 1'b0; // Set sign to 0
     end
-endfunction
+endtask
 
 // Function to perform two's complement on an 8-bit unsigned operand
-function tow_s_8su();
+task tow_s_8su();
     // Check each byte of the 32-bit operand
     if (operand_a_t[7] == 1'b1) begin
         operand_a_t[7:0] = (~operand_a_t[7:0]) + 1'b1; // Perform two's complement
@@ -58,7 +58,7 @@ function tow_s_8su();
     end else begin
         sign_a[3] = 1'b0; // Set sign to 0
     end
-endfunction
+endtask
 
 // Task to perform multiplication and check results
 task mulhsu();

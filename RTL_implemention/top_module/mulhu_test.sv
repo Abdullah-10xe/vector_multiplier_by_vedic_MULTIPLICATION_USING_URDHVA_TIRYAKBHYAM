@@ -1,7 +1,7 @@
 // Task to perform unsigned multiplication and check results
 task mulhu();
     // Loop for a large number of iterations
-    for (i = 0; i <= 10000; i++) begin
+  for (i = 0; i <= 10000; i++) begin
         precision = $random() / 4; // Determine precision
         operand_b_t = $urandom(); // Generate random operand b
         operand_a_t = $urandom(); // Generate random operand a
@@ -89,6 +89,15 @@ task mulhu();
         end
     end
 endtask
+
+
+
+
+
+
+
+
+
 
 
 

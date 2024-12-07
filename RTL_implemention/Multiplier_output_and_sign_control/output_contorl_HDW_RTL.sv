@@ -55,7 +55,7 @@ module tc_64bit_with_precision #(parameter WIDTH = 16) (
             mul_out = {mul_out_mux_sel[56:48], mul_out_mux_sel[39:32], 
                        mul_out_mux_sel[23:16], mul_out_mux_sel[7:0]};
         end else if (opcode != 2'b00 && precision == 2'b00) begin
-            mul_out = {mul_out_mux_sel[63:57], mul_out_mux_sel[47:32], 
+          mul_out = {mul_out_mux_sel[63:56], mul_out_mux_sel[47:40], 
                        mul_out_mux_sel[31:24], mul_out_mux_sel[15:8]};
         end else if (opcode != 2'b00 && precision == 2'b01) begin 
             mul_out = {mul_out_mux_sel[63:48], mul_out_mux_sel[31:16]};

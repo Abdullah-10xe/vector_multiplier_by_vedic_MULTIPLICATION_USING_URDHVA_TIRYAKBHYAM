@@ -25,3 +25,4 @@ module full_adder(
     assign full_adder_carry = (ha_sum & full_adder_carry_in) | ha_carry;
   
 endmodule
+

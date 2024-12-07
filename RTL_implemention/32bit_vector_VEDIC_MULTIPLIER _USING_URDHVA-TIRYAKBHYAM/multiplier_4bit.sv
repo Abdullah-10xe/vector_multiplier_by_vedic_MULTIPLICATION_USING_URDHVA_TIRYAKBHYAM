@@ -1,5 +1,3 @@
-
-
 module multiplier_4bit (
     input logic [3:0] a_4bit,           // First 4-bit operand
     input logic [3:0] b_4bit,           // Second 4-bit operand
@@ -60,5 +58,4 @@ module multiplier_4bit (
 
 
 endmodule
-
 

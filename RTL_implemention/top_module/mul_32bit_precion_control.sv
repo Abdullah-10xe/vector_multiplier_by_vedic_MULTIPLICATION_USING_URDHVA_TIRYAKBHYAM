@@ -45,7 +45,7 @@ module mul_32bit_precion_control (
     );
 
     // Instantiate the control logic for operand B
-    tc_sel_control_logic #( .operand_select(1)) tc_sel_control_logic_opb (
+    tc_sel_control_logic #( .OPERAN_B(1)) tc_sel_control_logic_opb (
         .opcode(opcode),
         .precision(precision),
         .operand_a(operand_b),

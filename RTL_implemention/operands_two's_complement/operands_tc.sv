@@ -221,17 +221,7 @@ module tc_first_8bits #(
               
             end
         end
-      /*
-
-      for (i = 2; i <= WIDTH-1; i = i + 1) begin
-        if (i < WIDTH) begin
-                or_gate[i-1] = operand_a[i] | or_gate[i-2];
-                operand_b[i]  = operand_a[i] ^ or_gate[i-2];
-        end 
-        else begin
-                operand_b[i] = operand_a[i] ^ or_gate[i-2];
-        end
-      end*/
+     
     end
 endmodule
 

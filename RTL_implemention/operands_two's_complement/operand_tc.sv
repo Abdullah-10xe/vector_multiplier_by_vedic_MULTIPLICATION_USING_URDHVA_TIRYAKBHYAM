@@ -123,14 +123,19 @@ module tc_first_8bits #(
         operand_b[1] = operand_a[1] ^ operand_a[0];
         or_gate[0]  = operand_a[1] | operand_a[0];
 
-      for (i = 2; i <= WIDTH-1; i = i + 1) begin
-        if (i < WIDTH) begin
-                or_gate[i-1] = operand_a[i] | or_gate[i-2];
-                operand_b[i]  = operand_a[i] ^ or_gate[i-2];
-        end 
-        else begin
-                operand_b[i] = operand_a[i] ^ or_gate[i-2];
+          for(i=2;i<=WIDTH-1;i++)
+        begin
+          if(i<=WIDTH-2)
+            begin
+          or_gate[i-1] = operand_a[i] | or_gate[i-2];
+          operand_b[i]  = operand_a[i] ^ or_gate[i-2];
+            end
+          else
+            begin
+              operand_b[i]  = operand_a[i] ^ or_gate[i-2];
+              
+              
+            end
         end
-      end
     end
 endmodule

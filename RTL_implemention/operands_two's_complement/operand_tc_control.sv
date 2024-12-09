@@ -1,5 +1,5 @@
 module tc_sel_control_logic #(
-    parameter operand_select = 0
+    parameter OPERAND_B = 0
 ) (
     input  logic [1:0] opcode,
     input  logic [1:0] precision,
@@ -23,7 +23,7 @@ module tc_sel_control_logic #(
     );
 
     generate
-      if (operand_select == 0) begin
+      if (OPERAND_B == 0) begin
           assign opcode_signal = (opcode == 2'b00 | opcode == 2'b01 | opcode == 2'b11);
         end 
         else begin

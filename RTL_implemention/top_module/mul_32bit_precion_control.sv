@@ -1,3 +1,16 @@
+/***********************************************************************************
+* Author      : Abdullah Jhatial
+* Designation : Associate Hardware Design Engineer
+* Firm        : 10x Engineers
+* Email       : abdullahjhatial92@gmail.com, abdullah.jhatial@10xengineers.ai
+*  **********************       Design        ***************************************** 
+* This module design is for combine the all modules  
+* Supported precision: 8-bit, 16-bit, 32-bit (00, 01, 10)
+* Supported operations: MUL, MULH, MULHU, MULSU (00, 01, 10, 11)
+* Design for Vector Multiplier based on VEDIC MULTIPLIER USING URDHVA-TIRYAKBHYAM
+* test with all opcode and precsions with 10000 randomize values
+***********************************************************************************/
+
 module mul_32bit_precion_control (
     input logic clk,                     // Clock signal
     input logic rst,                     // Reset signal

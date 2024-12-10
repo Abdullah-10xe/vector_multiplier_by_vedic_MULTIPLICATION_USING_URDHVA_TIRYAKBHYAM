@@ -1,27 +1,3 @@
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 module test_32_bit_mul();
     // Control signals
     logic [1:0] opcode;          // Operation code for the multiplication

@@ -18,7 +18,7 @@ module test_32_bit_mul();
     int pass = 0;                // Counter for passed tests
 
     // Instantiate the 32-bit multiplication unit
-    mul_32bit_precion_control mul_dut (
+    mul_32bit_precision_control mul_dut (
         .clk(clk),
         .rst(rst),
         .operand_a_reg(operand_a_t),

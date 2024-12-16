@@ -10,6 +10,7 @@
 * Supported operations: MUL, MULH, MULHU, MULSU (00, 01, 10, 11)
 * Design for Vector Multiplier based on VEDIC MULTIPLIER USING URDHVA-TIRYAKBHYAM
 ***********************************************************************************/
+   
 module tc_64bit_with_precision #(parameter WIDTH = 16) (
     input logic [63:0] mul_block_output,  // 64-bit output from the multiplication block
     input logic [1:0] opcode,              // Operation code to determine the operation
@@ -44,7 +45,7 @@ module tc_64bit_with_precision #(parameter WIDTH = 16) (
 
     always_comb begin
         // Determine the output based on opcode and precision
-         mul_out={ mul_out_mux_sel[56:48], mul_out_mux_sel[39:32], mul_out_mux_sel[23:16], mul_out_mux_sel[7:0]};
+      mul_out={ mul_out_mux_sel[56:48], mul_out_mux_sel[39:32], mul_out_mux_sel[23:16], mul_out_mux_sel[7:0]};
         if (opcode == 2'b00 && precision == 2'b00) begin
             mul_out = {mul_out_mux_sel[56:48], mul_out_mux_sel[39:32], 
                        mul_out_mux_sel[23:16], mul_out_mux_sel[7:0]};

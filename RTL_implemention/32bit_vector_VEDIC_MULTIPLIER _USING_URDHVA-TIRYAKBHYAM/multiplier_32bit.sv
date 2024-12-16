@@ -11,39 +11,33 @@
 ***********************************************************************************/
 
 
+// 32-bit Multiplier Module
 module multiplier_32bit (
-    input  logic clk,                     // Clock input
-    input  logic rst,                     // Reset input
-    input  logic [31:0] operand_a_32bit, // First 32-bit operand
-    input  logic [31:0] operand_b_32bit, // Second 32-bit operand
-    input  logic [1:0] precision,         // Precision control
-    output logic [63:0] output_32bit_mul, // 64-bit multiplication result
-    output logic [1:0] precision_reg       // Registered precision
+    input logic          clk,                          // Clock signal
+    input logic          rst,                          // Reset signal
+    input logic  [31:0] operand_a_32bit,      // First 32-bit operand
+    input logic  [31:0] operand_b_32bit,      // Second 32-bit operand
+    input logic  [1:0] precision,              // Precision control
+    output logic [63:0] output_32bit_mul      // 64-bit multiplication output
 );
 
     // Internal signals
-    logic [3:0][31:0] in_16bit_mul_block; // Array to hold 16-bit multiplication results
-    logic [63:0] output_32bit_mul_wire;   // Wire for final output
-    logic [63:0] output_32bit_mul_pr8_16; // Intermediate result for 8-16 precision
-    logic [63:0] output_32bit_mul_pr32;   // Intermediate result for 32 precision
-    logic [15:0] mux_a_16bit_pre;         // MUX input for 16-bit operand A
-    logic [31:0] csa_sum;                  // Sum output from carry-save adder
-    logic [31:0] csa_carry;                // Carry output from carry-save adder
-    logic carry_bka;                       // Carry output from Brent-Kung adder
-    logic mux_sel;                        // MUX selection signal
-    logic [31:0] b_16_0;                  // 16-bit operand B part 0
-    logic [31:0] b_16_1;                  // 16-bit operand B part 1
-    logic [31:0] b_16_2;                  // 16-bit operand B part 2
-    logic [31:0] b_16_3;                  // 16-bit operand B part 3
-    logic mux_sel_reg;                    // Registered MUX selection signal
+    logic [3:0][31:0] in_16bit_mul_block;     // Array to hold outputs from 16-bit multipliers
+    logic [63:0] output_32bit_mul_wire;       // Wire for final multiplication output
+    logic [63:0] output_32bit_mul_pr8_16;     // Output for precision 8 and 16
+    logic [63:0] output_32bit_mul_pr32;       // Output for precision 32
+    logic [15:0] mux_a_16bit_pre;             // Mux input for 16-bit operand A
+    logic [31:0] csa_sum;                      // Sum output from carry-save adder
+    logic [31:0] csa_carry;                    // Carry output from carry-save adder
+    logic carry_bka;                           // Carry output from Brent-Kung adder
+    logic mux_sel;                             // Mux selection signal
+    logic [31:0] b_16_0;                       // 16-bit operand B part 0
+    logic [31:0] b_16_1;                       // 16-bit operand B part 1
+    logic [31:0] b_16_2;                       // 16-bit operand B part 2
+    logic [31:0] b_16_3;                       // 16-bit operand B part 3
+    logic mux_sel_reg;                         // Registered mux selection signal
 
-    // Assigning 16-bit parts of operand B
-    assign b_16_0 = in_16bit_mul_block[0];
-    assign b_16_1 = in_16bit_mul_block[1];
-    assign b_16_2 = in_16bit_mul_block[2];
-    assign b_16_3 = in_16bit_mul_block[3];
-
-    // Instantiating four 16-bit multipliers partial muls
+    // Instantiate 16-bit multiplier units
     multiplier_16bit unit16_0 (
         .clk(clk),
         .rst(rst),
@@ -80,7 +74,7 @@ module multiplier_32bit (
         .precision(precision)
     );
 
-    // Carry-save adder instantiation
+    // Carry-save adder to combine partial products
     carry_save_adder #(.ADDER_WIDTH(32)) cs_adder (
         .operand_a_csa({in_16bit_mul_block[3][15:0], in_16bit_mul_block[0][31:16]}), 
         .operand_b_csa(in_16bit_mul_block[1]),
@@ -89,40 +83,40 @@ module multiplier_32bit (
         .carry_csv(csa_carry)
     );
 
-    // Brent-Kung adder instantiation
-    brent_kung_adder #(.ADDER_WIDTH(32), .NO_CARRY(0)) bk_adder (
-                .operand_a_bka({in_16bit_mul_block[3][16], csa_sum[31:1]}), 
-        .operand_b_bka(csa_carry),                     
-        .sum_bka(output_32bit_mul_pr32[48:17]),
+    // Brent-Kung adder to finalize the sum
+    prefix_adder #(.ADDER_WIDTH(32), .NO_CARRY(0)) bk_adder (
+        .operand_a({in_16bit_mul_block[3][16], csa_sum[31:1]}), 
+        .operand_b(csa_carry),                     
+        .sum_stage(output_32bit_mul_pr32[48:17]),
         .carry_bka(carry_bka)
     );
 
-    // Carry-select adder instantiation
+    // Carry-select adder to finalize the output
     carray_select_adder #(.ADDER_WIDTH(15)) csela (
         .operand_a_csela(in_16bit_mul_block[3][31:17]),
         .carry_in_csela(carry_bka),
         .sum_csela(output_32bit_mul_pr32[63:49])
     );
 
-    // Assigning outputs based on precision
-    assign sum_bit0 = csa_sum[0]; // LSB of the sum
-    assign mux_sel = (precision == 2'b10 | precision == 2'b11); // MUX selection based on precision
-    assign mux_sel_reg = (precision_reg == 2'b10 | precision_reg == 2'b11); // Registered MUX selection
+    // Assignments for output based on precision
+    assign sum_bit0 = csa_sum[0];  // Capture the least significant bit of the sum
+    assign mux_sel = (precision == 2'b10 || precision == 2'b11);  // Mux selection based on precision
 
     // Output assignments based on precision
-    assign output_32bit_mul_pr32[16:0] = {csa_sum[0], in_16bit_mul_block[0][15:0]}; // 32-bit output for precision 32
-    assign output_32bit_mul_pr8_16 = {in_16bit_mul_block[1], in_16bit_mul_block[0]}; // 32-bit output for precision 8-16
-    assign mux_a_16bit_pre = mux_sel ? operand_a_32bit[15:0] : operand_a_32bit[31:16]; // MUX for operand A
-    assign output_32bit_mul_wire = mux_sel_reg ? output_32bit_mul_pr32 : output_32bit_mul_pr8_16; // Final output selection
-    assign output_32bit_mul = output_32bit_mul_wire; // Assign final output
+    assign output_32bit_mul_pr32[16:0] = {csa_sum[0], in_16bit_mul_block[0][15:0]};  // Combine results for precision 32
+    assign output_32bit_mul_pr8_16 = {in_16bit_mul_block[1], in_16bit_mul_block[0]};  // Combine results for precision 8 and 16
+    assign mux_a_16bit_pre = mux_sel ? operand_a_32bit[15:0] : operand_a_32bit[31:16];  // Select operand A based on mux selection
+    assign output_32bit_mul_wire = mux_sel_reg ? output_32bit_mul_pr32 : output_32bit_mul_pr8_16;  // Final output selection
+    assign output_32bit_mul = output_32bit_mul_wire;  // Assign final output
 
-    // Always block for updating precision register
+    // Always block for registered mux selection
     always_ff @(posedge clk, negedge rst) begin
         if (!rst) begin
-            precision_reg <= 2'b00; // Reset precision register
+            mux_sel_reg <= 0;  // Reset registered mux selection
         end else begin
-            precision_reg <= precision; // Update precision register
+            mux_sel_reg <= mux_sel;  // Update registered mux selection
         end
     end
 
 endmodule
+

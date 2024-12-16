@@ -9,9 +9,8 @@
 * Supported operations: MUL, MULH, MULHU, MULSU (00, 01, 10, 11)
 * Design for Vector Multiplier based on VEDIC MULTIPLIER USING URDHVA-TIRYAKBHYAM
 ***********************************************************************************/
-
 module tc_sel_control_logic #(
-    parameter OPERAND_B = 0
+    parameter operand_select = 0
 ) (
     input  logic [1:0] opcode,
     input  logic [1:0] precision,
@@ -35,7 +34,7 @@ module tc_sel_control_logic #(
     );
 
     generate
-      if (OPERAND_B == 0) begin
+      if (operand_select == 0) begin
           assign opcode_signal = (opcode == 2'b00 | opcode == 2'b01 | opcode == 2'b11);
         end 
         else begin
@@ -45,11 +44,7 @@ module tc_sel_control_logic #(
 
     // mux_selecting 8 bits according to precision and opcode
     always_comb begin
-        operand_a_from_tc[7:0] = (mux_select_opm[0]) ? operand_a2[7:0] : operand_a[7:0];
-        operand_a_from_tc[15:8] = (mux_select_opm[1]) ? operand_a2[15:8] : operand_a[15:8];
-        operand_a_from_tc[23:16] = (mux_select_opm[2]) ? operand_a2[23:16] : operand_a[23:16];
-        operand_a_from_tc[31:24] = (mux_select_opm[3]) ? operand_a2[31:24] : operand_a[31:24];
-
+     
         mux_select_opm[0] = (opcode_signal & (
             ((precision == 2'b00 | precision == 2'b11) & operand_a[7] == 1'b1) |
             ((precision == 2'b01) & operand_a[15] == 1'b1) |
@@ -73,6 +68,11 @@ module tc_sel_control_logic #(
             ((precision == 2'b01) & operand_a[31] == 1'b1) |
             ((precision == 2'b10) & operand_a[31] == 1'b1)
         ));
+         operand_a_from_tc[7:0] = (mux_select_opm[0]) ? operand_a2[7:0] : operand_a[7:0];
+        operand_a_from_tc[15:8] = (mux_select_opm[1]) ? operand_a2[15:8] : operand_a[15:8];
+        operand_a_from_tc[23:16] = (mux_select_opm[2]) ? operand_a2[23:16] : operand_a[23:16];
+        operand_a_from_tc[31:24] = (mux_select_opm[3]) ? operand_a2[31:24] : operand_a[31:24];
+
     end
 endmodule
 

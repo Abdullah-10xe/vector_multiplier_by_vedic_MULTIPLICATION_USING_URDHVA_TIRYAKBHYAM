@@ -10,15 +10,16 @@
 * Design for Vector Multiplier based on VEDIC MULTIPLIER USING URDHVA-TIRYAKBHYAM
 ***********************************************************************************/
 
+
 module multiplier_4bit (
-    input logic [3:0] a_4bit,           // First 4-bit operand
-    input logic [3:0] b_4bit,           // Second 4-bit operand
+    input logic  [3:0]  a_4bit,           // First 4-bit operand
+    input logic  [3:0]  b_4bit,           // Second 4-bit operand
     output logic [7:0] mul_out_4bit     // 8-bit multiplication result
 );
   
     logic [3:0][3:0] mul_block_wire;    // Intermediate multiplication results
-    logic [3:0] csa_sum;                // Sum output from the carry-save adder
-    logic [3:0] csa_carry;              // Carry output from the carry-save adder
+    logic [3:0]      csa_sum;                // Sum output from the carry-save adder
+    logic [3:0]      csa_carry;              // Carry output from the carry-save adder
 
     // Instantiate 2-bit multipliers for partial products
     two_bit_multiplier unit2_0 (
@@ -47,7 +48,7 @@ module multiplier_4bit (
 
     // Assign the least significant bits of the multiplication result
     assign mul_out_4bit[1:0] = mul_block_wire[0][1:0]; // LSBs from the first partial product
-    assign mul_out_4bit[2]=csa_sum[0];
+    assign mul_out_4bit[2] = csa_sum[0];
 
     // Calculate the carry-save sum and carry
     carry_save_adder #(.ADDER_WIDTH(4)) cs_adder (
@@ -60,14 +61,17 @@ module multiplier_4bit (
 
 
 
-  brent_kung_adder #(.ADDER_WIDTH(5)) bk_adder_nc (
-    .operand_a_bka({mul_block_wire[3][3:2], csa_sum[3:1]}), // First operand
-    .operand_b_bka({1'b0, csa_carry}),                      // Second operand
-    .sum_bka(mul_out_4bit[7:3])                            // Sum output
+  prefix_adder #(.ADDER_WIDTH(5)) bk_adder_nc (
+    .operand_a({mul_block_wire[3][3:2], csa_sum[3:1]}), // First operand
+    .operand_b({1'b0, csa_carry}),                      // Second operand
+    .sum_stage(mul_out_4bit[7:3])                            // Sum output
 );
 
 
 
 
 endmodule
+
+
+
 

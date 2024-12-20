@@ -10,6 +10,11 @@
 * Design for Vector Multiplier based on VEDIC MULTIPLIER USING URDHVA-TIRYAKBHYAM
 ***********************************************************************************/
 
+
+
+
+
+
 module full_adder(
     input logic full_adder_operand_a,   // First operand of the full adder
     input logic full_adder_operand_b,   // Second operand of the full adder
@@ -21,7 +26,7 @@ module full_adder(
     // Intermediate signals for half adder
     logic ha_sum;                        // Sum output from the half adder
     logic ha_carry;                      // Carry output from the half adder
-
+/*
     // Instantiate the half adder
     half_adder hf_a (
         .half_adder_a(full_adder_operand_a),   // Connect operand A to half adder
@@ -34,7 +39,16 @@ module full_adder(
     assign full_adder_sum = ha_sum ^ full_adder_carry_in;
   
     // Calculate the final carry using OR and AND operations
-    assign full_adder_carry = (ha_sum & full_adder_carry_in) | ha_carry;
+    assign full_adder_carry = (ha_sum & full_adder_carry_in) | ha_carry; */
+
+
+ assign full_adder_sum = (full_adder_operand_a^full_adder_operand_b) ^ full_adder_carry_in;
+ assign full_adder_carry = (full_adder_operand_a & full_adder_operand_b) |  (full_adder_operand_a &full_adder_carry_in)| (full_adder_operand_b &full_adder_carry_in) ;
   
 endmodule
+
+
+
+
+
 

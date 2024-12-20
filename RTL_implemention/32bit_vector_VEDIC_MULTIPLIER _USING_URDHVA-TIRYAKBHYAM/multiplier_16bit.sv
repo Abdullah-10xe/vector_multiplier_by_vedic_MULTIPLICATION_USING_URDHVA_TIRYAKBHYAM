@@ -59,7 +59,7 @@ module multiplier_16bit (
 
     // Carry-save adder to combine partial products
     carry_save_adder #(.ADDER_WIDTH(16)) cs_adder (
-        .operand_a_csa({in_8bit_mul_block[3][7:0], in_8bit_mul_block_reg[0][15:8]}), 
+      .operand_a_csa({in_8bit_mul_block_reg[3][7:0], in_8bit_mul_block_reg[0][15:8]}), 
         .operand_b_csa(in_8bit_mul_block_reg[1]),
         .operand_c_csa(in_8bit_mul_block_reg[2]),
         .sum_csv(csa_sum),
@@ -84,8 +84,8 @@ module multiplier_16bit (
     // Assignments for output based on precision
   
     assign mux_sel = (precision == 2'b00);  // Mux selection based on precision
-    assign output_16bit_mul_pr16[8:0] = {csa_sum[0], in_8bit_mul_block[0][7:0]};  // Combine results for precision 16
-    assign output_16bit_mul_pr8 = {in_8bit_mul_block[1], in_8bit_mul_block[0]};    // Combine results for precision 8
+  assign output_16bit_mul_pr16[8:0] = {csa_sum[0], in_8bit_mul_block_reg[0][7:0]};  // Combine results for precision 16
+  assign output_16bit_mul_pr8 = {in_8bit_mul_block_reg[1], in_8bit_mul_block_reg[0]};    // Combine results for precision 8
     assign mux_a_8bit_pre = mux_sel ? operand_a_16bit[15:8] : operand_a_16bit[7:0]; // Select operand A based on mux selection
     assign output_16bit_mul = mux_sel_reg ? output_16bit_mul_pr8 : output_16bit_mul_pr16; // Final output selection
 
@@ -101,6 +101,5 @@ module multiplier_16bit (
     end
 
 endmodule
-
 
 

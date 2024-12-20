@@ -11,13 +11,12 @@
 ***********************************************************************************/
 
 
-// 32-bit Multiplier Module
 module multiplier_32bit (
-    input logic          clk,                          // Clock signal
-    input logic          rst,                          // Reset signal
-    input logic  [31:0] operand_a_32bit,      // First 32-bit operand
-    input logic  [31:0] operand_b_32bit,      // Second 32-bit operand
-    input logic  [1:0] precision,              // Precision control
+    input logic clk,                          // Clock signal
+    input logic rst,                          // Reset signal
+    input logic [31:0] operand_a_32bit,      // First 32-bit operand
+    input logic [31:0] operand_b_32bit,      // Second 32-bit operand
+    input logic [1:0] precision,              // Precision control
     output logic [63:0] output_32bit_mul      // 64-bit multiplication output
 );
 
@@ -119,4 +118,9 @@ module multiplier_32bit (
     end
 
 endmodule
+
+
+
+
+
 

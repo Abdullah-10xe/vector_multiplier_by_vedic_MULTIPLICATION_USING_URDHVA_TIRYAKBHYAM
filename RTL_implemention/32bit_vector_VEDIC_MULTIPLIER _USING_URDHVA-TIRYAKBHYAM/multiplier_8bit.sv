@@ -9,6 +9,9 @@
 * Supported operations: MUL, MULH, MULHU, MULSU (00, 01, 10, 11)
 * Design for Vector Multiplier based on VEDIC MULTIPLIER USING URDHVA-TIRYAKBHYAM
 ***********************************************************************************/
+
+
+
 module  multiplier_8bit  (input  logic [7:0] operand_a_8bit,
                           input  logic [7:0] operand_b_8bit,
                           output logic [15:0] output_8bit_mul);
@@ -48,5 +51,6 @@ module  multiplier_8bit  (input  logic [7:0] operand_a_8bit,
      
  
 endmodule
+
 
 

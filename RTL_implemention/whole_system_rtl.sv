@@ -877,10 +877,6 @@ module prefix_adder #(
 endmodule
 
 
-
-
-
-
 // Black Cell Module
 module black_cell(
     input logic propagate_pre,  // Previous propagate signal

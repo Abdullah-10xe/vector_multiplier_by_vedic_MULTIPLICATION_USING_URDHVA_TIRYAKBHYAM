@@ -11,8 +11,11 @@
 ***********************************************************************************/
 
 // Kogge-Stone Adder Module
+
+
+
 module prefix_adder #( 
-    parameter CARRY_NO=0,
+    parameter NO_CARRY=0,
     parameter ADDER_WIDTH = 16,  // Width of the adder
     parameter STAGE = $clog2(ADDER_WIDTH) // Number of stages based on the width
 )(
@@ -79,7 +82,7 @@ module prefix_adder #(
             if (i == 0) begin
                 // Assign the first sum and carry out
                 assign sum_stage[i] = pro_vector[STAGE][i];
-              if(CARRY_NO==0)
+              if( NO_CARRY==0)
                 begin
                 assign  carry_bka= gen_vector[STAGE][ADDER_WIDTH-1];
                 end
@@ -152,34 +155,5 @@ module sum_out(
     // Calculate the output sum as the XOR of carry_in and propagate_in
     assign out_sum = carry_in ^ propagate_in;
 endmodule
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 

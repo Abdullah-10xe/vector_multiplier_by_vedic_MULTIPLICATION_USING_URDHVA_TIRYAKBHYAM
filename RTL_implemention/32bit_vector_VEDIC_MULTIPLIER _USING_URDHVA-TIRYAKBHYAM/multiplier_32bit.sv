@@ -10,7 +10,6 @@
 * Design for Vector Multiplier based on VEDIC MULTIPLIER USING URDHVA-TIRYAKBHYAM
 ***********************************************************************************/
 
-
 module multiplier_32bit (
     input logic clk,                          // Clock signal
     input logic rst,                          // Reset signal
@@ -118,7 +117,6 @@ module multiplier_32bit (
     end
 
 endmodule
-
 
 
 

@@ -4,11 +4,9 @@
 * Firm        : 10x Engineers
 * Email       : abdullahjhatial92@gmail.com, abdullah.jhatial@10xengineers.ai
 *  **********************       Design        ***************************************** 
-* This module design is for taking two's complement depending on the opcode and precision.
-* Supported precision: 8-bit, 16-bit, 32-bit (00, 01, 10)
-* Supported operations: MUL, MULH, MULHU, MULSU (00, 01, 10, 11)
+* This moduel   32 bit multiplier block it multiple 32 bit unsigned  numbers 
 * Design for Vector Multiplier based on VEDIC MULTIPLIER USING URDHVA-TIRYAKBHYAM
-***********************************************************************************/
+***************************************************************************************/
 
 module multiplier_32bit (
     input logic clk,                          // Clock signal

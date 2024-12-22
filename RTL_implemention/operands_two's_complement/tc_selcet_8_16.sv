@@ -1,20 +1,18 @@
 
-// this module is responsible for producing tc as precision and input from pervious tc block 
-
-
-// This module is responsible for producing TC as precision and input from previous TC block 
-
-// This module is responsible for producing TC as precision and input from previous TC block 
+// this module is responsible for producing Tow's compliment  as precision 
+// this module desing on prefix calculation techniques which reduces logic levels
+// this module parameterized unit it take base unit bits and produce the tow's complement 
+/// for precions same logic with little modifications  for detail check diagram
 module tc_8_16bits #(
     parameter WIDTH = 8,                // Width of the operands
     parameter FIRST_CHANK = 0,          // Indicates the first chunk
     parameter STAGE = $clog2(WIDTH)     // Number of stages based on the width
 ) (
-    input logic [WIDTH-1:0] operand_a,  // Input operand A
-    output logic [WIDTH-1:0] operand_b,  // Output operand B
-    input logic mux,                     // Multiplexer control signal
-    input logic [1:0] carry_in,          // Carry input signals
-    output logic carry_out               // Carry output signal
+    input logic  [WIDTH-1:0]  operand_a,  // Input operand A
+    output logic [WIDTH-1:0]  operand_b,  // Output operand B
+    input logic               mux,                     // Multiplexer control signal
+    input logic  [1:0]        carry_in,          // Carry input signals
+    output logic              carry_out               // Carry output signal
 );
 
     genvar i; // Loop variable for width
@@ -106,8 +104,8 @@ endmodule
 
 //////////////////// OR Cell ///////////////////////////////
 module or_cell (
-    input logic a_bit, 
-    input logic or_pre,
+    input logic  a_bit, 
+    input logic  or_pre,
     output logic carry
 );
     // Compute the OR operation
@@ -116,8 +114,8 @@ endmodule
 
 //////////////////////// XOR Cell ///////////////////////////
 module xor_cell (
-    input logic gen_a, 
-    input logic op_a,
+    input logic  gen_a, 
+    input logic  op_a,
     output logic xor_out
 );
     // Compute the XOR operation

@@ -4,11 +4,9 @@
 * Firm        : 10x Engineers
 * Email       : abdullahjhatial92@gmail.com, abdullah.jhatial@10xengineers.ai
 *  **********************       Design        ***************************************** 
-* This module design is for taking two's complement depending on the opcode and precision.
-* Supported precision: 8-bit, 16-bit, 32-bit (00, 01, 10)
-* Supported operations: MUL, MULH, MULHU, MULSU (00, 01, 10, 11)
+* This moduel  4x4mul unit for 32 multiplier block it multiple 4bit unsigned  numbers 
 * Design for Vector Multiplier based on VEDIC MULTIPLIER USING URDHVA-TIRYAKBHYAM
-***********************************************************************************/
+***************************************************************************************/
 module multiplier_4bit (
     input logic [3:0] a_4bit,           // First 4-bit operand
     input logic [3:0] b_4bit,           // Second 4-bit operand

@@ -1,31 +1,31 @@
 /***********************************************************************************
 * Author      : Abdullah Jhatial
 * Designation : Associate Hardware Design Engineer
-* Firm        : 10x Engineers
+* Firm        : 10x Engineers                 https://10xengineers.ai/
 * Email       : abdullahjhatial92@gmail.com, abdullah.jhatial@10xengineers.ai
 *  **********************       Design        ***************************************** 
-* This module design is for taking two's complement depending on the opcode and precision.
+* This module design is for taking 32bit two's complement depending on the opcode and precision.
 * Supported precision: 8-bit, 16-bit, 32-bit (00, 01, 10)
+* parameterized for  64 bit with precision of 16 ,32,64
 * Supported operations: MUL, MULH, MULHU, MULSU (00, 01, 10, 11)
 * Design for Vector Multiplier based on VEDIC MULTIPLIER USING URDHVA-TIRYAKBHYAM
 ***********************************************************************************/
-///// Operand Two's Complement
-//////////// TC Block  
+///// Operand Two's Complement 
 module tc_bit_stream_with_precision #(parameter WIDTH=8)
 (
     input  logic [1:0] precision,                     // Precision control
     input  logic [(WIDTH*4)-1:0] operand_a,          // Input operand
-    output logic [(WIDTH*4)-1:0] output_operand       // Output operand after two's complement
+    output logic [(WIDTH*4)-1:0] output_operand     // Output operand after two's complement
 );
     // Mux_in signal for generating select signal for TC as precision 
     // Carry_out_from_8bit_tc 2 bit signal is propagating previous block out to next TC block
-    logic [1:0] carry_out_from_8bit_tc_0;            // Carry output from first 8-bit TC
-    logic [1:0] carry_out_from_8bit_tc_1;            // Carry output from second 8-bit TC
-    logic carry_out_from_8bit_tc;                     // General carry output
-    logic [2:0] mux_in;                               // Mux select signals
-    logic [2:0][WIDTH-1:0] output_operand_0;        // Intermediate output operands
-    logic [2:0][WIDTH-1:0] output_operand_1;        // Intermediate output operands
-    logic [1:0] mux_sel;                              // Mux selection signals
+    logic [1:0]            carry_out_from_8bit_tc_0;   // Carry output from first 8-bit TC
+    logic [1:0]            carry_out_from_8bit_tc_1;  // Carry output from second 8-bit TC
+    logic                  carry_out_from_8bit_tc;   // General carry output
+    logic [2:0]            mux_in;                  // Mux select signals
+    logic [2:0][WIDTH-1:0] output_operand_0;       // Intermediate output operands
+    logic [2:0][WIDTH-1:0] output_operand_1;      // Intermediate output operands
+    logic [1:0]            mux_sel;              // Mux selection signals
 
     // Instance of the first 8-bit two's complement block
     tc_8_16bits #(

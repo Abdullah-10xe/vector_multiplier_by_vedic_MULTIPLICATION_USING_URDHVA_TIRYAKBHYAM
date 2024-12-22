@@ -4,20 +4,18 @@
 * Firm        : 10x Engineers
 * Email       : abdullahjhatial92@gmail.com, abdullah.jhatial@10xengineers.ai
 *  **********************       Design        ***************************************** 
-* This module design is for taking two's complement depending on the opcode and precision.
-* Supported precision: 8-bit, 16-bit, 32-bit (00, 01, 10)
-* Supported operations: MUL, MULH, MULHU, MULSU (00, 01, 10, 11)
+* This moduel  8x8mul unit for 32bit multiplier block it multiple 8bit unsigned  numbers 
 * Design for Vector Multiplier based on VEDIC MULTIPLIER USING URDHVA-TIRYAKBHYAM
-***********************************************************************************/
+***************************************************************************************/
 
 
 
-module  multiplier_8bit  (input  logic [7:0] operand_a_8bit,
-                          input  logic [7:0] operand_b_8bit,
+module  multiplier_8bit  (input  logic [7:0]  operand_a_8bit,
+                          input  logic [7:0]  operand_b_8bit,
                           output logic [15:0] output_8bit_mul);
-  logic [3:0][7:0]in_4bit_mul_block;
-  logic [7:0] csa_sum;
-  logic [7:0] csa_carry; 
+  logic [3:0][7:0] in_4bit_mul_block;
+  logic [7:0]      csa_sum;
+  logic [7:0]      csa_carry; 
   logic carry_bka;
   assign output_8bit_mul[3:0]=in_4bit_mul_block[0][3:0];
   assign output_8bit_mul[4]=csa_sum[0];

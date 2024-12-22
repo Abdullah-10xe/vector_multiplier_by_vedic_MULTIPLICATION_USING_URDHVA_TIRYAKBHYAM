@@ -1,24 +1,16 @@
-/***********************************************************************************
+/*********************************************************************************************************
 * Author      : Abdullah Jhatial
 * Designation : Associate Hardware Design Engineer
 * Firm        : 10x Engineers
 * Email       : abdullahjhatial92@gmail.com, abdullah.jhatial@10xengineers.ai
-*  **********************       Design        ***************************************** 
-* This module design is for taking two's complement depending on the opcode and precision.
-* Supported precision: 8-bit, 16-bit, 32-bit (00, 01, 10)
-* Supported operations: MUL, MULH, MULHU, MULSU (00, 01, 10, 11)
+*  **********************       Design        ************************************************************ 
+* This module design is for single bit full adder with majority circuit for carry for :for reducing fanout it give 30 ps margin 
 * Design for Vector Multiplier based on VEDIC MULTIPLIER USING URDHVA-TIRYAKBHYAM
 ***********************************************************************************/
-
-
-
-
-
-
 module full_adder(
-    input logic full_adder_operand_a,   // First operand of the full adder
-    input logic full_adder_operand_b,   // Second operand of the full adder
-    input logic full_adder_carry_in,    // Carry input from the previous stage
+    input logic  full_adder_operand_a,   // First operand of the full adder
+    input logic  full_adder_operand_b,   // Second operand of the full adder
+    input logic  full_adder_carry_in,    // Carry input from the previous stage
     output logic full_adder_sum,         // Output for the sum
     output logic full_adder_carry        // Output for the carry
 );
@@ -42,8 +34,8 @@ module full_adder(
     assign full_adder_carry = (ha_sum & full_adder_carry_in) | ha_carry; */
 
 
- assign full_adder_sum = (full_adder_operand_a^full_adder_operand_b) ^ full_adder_carry_in;
- assign full_adder_carry = (full_adder_operand_a & full_adder_operand_b) |  (full_adder_operand_a &full_adder_carry_in)| (full_adder_operand_b &full_adder_carry_in) ;
+ assign full_adder_sum = (full_adder_operand_a ^ full_adder_operand_b) ^ full_adder_carry_in;
+ assign full_adder_carry = (full_adder_operand_a & full_adder_operand_b) |  (full_adder_operand_a & full_adder_carry_in) | (full_adder_operand_b & full_adder_carry_in) ;
   
 endmodule
 

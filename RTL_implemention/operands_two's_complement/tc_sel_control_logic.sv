@@ -1,14 +1,15 @@
-/***********************************************************************************
+/*********************************************************************************************************
 * Author      : Abdullah Jhatial
 * Designation : Associate Hardware Design Engineer
-* Firm        : 10x Engineers
+* Firm        : 10x Engineers                 https://10xengineers.ai/
 * Email       : abdullahjhatial92@gmail.com, abdullah.jhatial@10xengineers.ai
-*  **********************       Design        ***************************************** 
-* This module design is for taking two's complement depending on the opcode and precision.
+*  *************************************      Design        ************************************************
+* This top module design is for taking two's complement depending on the opcode and precision and MSB bit.
+* 
 * Supported precision: 8-bit, 16-bit, 32-bit (00, 01, 10)
 * Supported operations: MUL, MULH, MULHU, MULSU (00, 01, 10, 11)
 * Design for Vector Multiplier based on VEDIC MULTIPLIER USING URDHVA-TIRYAKBHYAM
-***********************************************************************************/
+**********************************************************************************************************/
 
 module tc_sel_control_logic #(
     parameter operand_select = 0

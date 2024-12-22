@@ -1,24 +1,21 @@
-/***********************************************************************************
+/**************************************************************************************************************
 * Author      : Abdullah Jhatial
 * Designation : Associate Hardware Design Engineer
 * Firm        : 10x Engineers
 * Email       : abdullahjhatial92@gmail.com, abdullah.jhatial@10xengineers.ai
-*  **********************       Design        ***************************************** 
-* This module design is for taking two's complement depending on the opcode and precision.
+*  **********************       Design        *****************************************************************
+* This module design for adding single operand (5,7,15) bit number with carry in with carry select Architecture 
 * Supported precision: 8-bit, 16-bit, 32-bit (00, 01, 10)
 * Supported operations: MUL, MULH, MULHU, MULSU (00, 01, 10, 11)
 * Design for Vector Multiplier based on VEDIC MULTIPLIER USING URDHVA-TIRYAKBHYAM
-***********************************************************************************/
-// 3-4 Bit Adder Module
-
-
+****************************************************************************************************************/
 
 module adder_3_4 #(
     parameter ADDER_WIDTH = 3,  // Width of the adder (3 or 4 bits)
-    parameter CARRY_NO = 0       // Carry input (not used in this implementation)
+    parameter CARRY_NO    = 0  // Carry input (not used in this implementation)
 )(
-    input logic [ADDER_WIDTH-1:0] a,  // Input operand
-    input logic carry,                 // Carry input
+    input logic  [ADDER_WIDTH-1:0]  a,   // Input operand
+    input logic  carry,                 // Carry input
     output logic carry_out,            // Carry output
     output logic [ADDER_WIDTH-1:0] sum // Output sum
 );
@@ -72,8 +69,8 @@ endmodule
 module carray_select_adder #(
     parameter ADDER_WIDTH = 3  // Width of the adder (3, 7, or 15 bits)
 )(
-    input logic [ADDER_WIDTH-1:0] operand_a_csela, // Input operand
-    input logic carry_in_csela,                     // Carry input
+    input logic  [ADDER_WIDTH-1:0] operand_a_csela, // Input operand
+    input logic  carry_in_csela,                     // Carry input
     output logic [ADDER_WIDTH-1:0] sum_csela       // Output sum
 );
 

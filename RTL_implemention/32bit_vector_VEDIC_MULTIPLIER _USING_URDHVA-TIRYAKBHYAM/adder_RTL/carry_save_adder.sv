@@ -1,21 +1,21 @@
-/***********************************************************************************
+/**************************************************************************************************
 * Author      : Abdullah Jhatial
 * Designation : Associate Hardware Design Engineer
 * Firm        : 10x Engineers
 * Email       : abdullahjhatial92@gmail.com, abdullah.jhatial@10xengineers.ai
-*  **********************       Design        ***************************************** 
-* This module design is for taking two's complement depending on the opcode and precision.
+*  ********************************      Design       **********************************************
+* This module is design  for unsigned carry save adder for 3 operands it is generate sum and carry  
 * Supported precision: 8-bit, 16-bit, 32-bit (00, 01, 10)
 * Supported operations: MUL, MULH, MULHU, MULSU (00, 01, 10, 11)
 * Design for Vector Multiplier based on VEDIC MULTIPLIER USING URDHVA-TIRYAKBHYAM
-***********************************************************************************/
+***************************************************************************************************/
 
 module carry_save_adder #(parameter ADDER_WIDTH = 2) (
-    input logic [ADDER_WIDTH-1:0] operand_a_csa,  // First operand input (CSA)
-    input logic [ADDER_WIDTH-1:0] operand_b_csa,  // Second operand input (CSA)
-    input logic [ADDER_WIDTH-1:0] operand_c_csa,  // Carry input (CSA)
-    output logic [ADDER_WIDTH-1:0] sum_csv,        // Sum output (CSA)
-    output logic [ADDER_WIDTH-1:0] carry_csv       // Carry output (CSA)
+    input logic  [ADDER_WIDTH-1:0]  operand_a_csa,  // First operand input (CSA)
+    input logic  [ADDER_WIDTH-1:0]  operand_b_csa,  // Second operand input (CSA)
+    input logic  [ADDER_WIDTH-1:0]  operand_c_csa,  // Carry input (CSA)
+    output logic [ADDER_WIDTH-1:0]  sum_csv,        // Sum output (CSA)
+    output logic [ADDER_WIDTH-1:0]  carry_csv       // Carry output (CSA)
 );
   
     genvar i;  // Variable for generating multiple instances of full adder

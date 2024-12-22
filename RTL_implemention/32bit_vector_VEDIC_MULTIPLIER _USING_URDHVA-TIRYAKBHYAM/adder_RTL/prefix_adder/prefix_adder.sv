@@ -1,10 +1,10 @@
 /***********************************************************************************
 * Author      : Abdullah Jhatial
 * Designation : Associate Hardware Design Engineer
-* Firm        : 10x Engineers
+* Firm        : 10x Engineers                https://10xengineers.ai/
 * Email       : abdullahjhatial92@gmail.com, abdullah.jhatial@10xengineers.ai
 *  **********************       Design        ***************************************** 
-* This module design is for taking two's complement depending on the opcode and precision.
+* This module design for parameterized Kogge stone adder
 * Supported precision: 8-bit, 16-bit, 32-bit (00, 01, 10)
 * Supported operations: MUL, MULH, MULHU, MULSU (00, 01, 10, 11)
 * Design for Multiplier based on Vedic Algorithim 
@@ -15,14 +15,14 @@
 
 
 module prefix_adder #( 
-    parameter NO_CARRY=0,
-    parameter ADDER_WIDTH = 16,  // Width of the adder
-    parameter STAGE = $clog2(ADDER_WIDTH) // Number of stages based on the width
+    parameter NO_CARRY     =  0,
+    parameter ADDER_WIDTH  =  16,  // Width of the adder
+    parameter STAGE        =  $clog2(ADDER_WIDTH) // Number of stages based on the width
 )(
-    input logic [ADDER_WIDTH-1:0] operand_a,  // First operand
-    input logic [ADDER_WIDTH-1:0] operand_b,  // Second operand
-  output logic [ADDER_WIDTH-1:0] sum_stage,      // Output sum including carry
-    output logic carry_bka
+    input logic   [ADDER_WIDTH-1:0] operand_a,  // First operand
+    input logic   [ADDER_WIDTH-1:0] operand_b,  // Second operand
+    output logic  [ADDER_WIDTH-1:0] sum_stage,  // Output sum including carry
+    output logic                    carry_bka
 );
 
     // Generate and propagate vectors for each stage

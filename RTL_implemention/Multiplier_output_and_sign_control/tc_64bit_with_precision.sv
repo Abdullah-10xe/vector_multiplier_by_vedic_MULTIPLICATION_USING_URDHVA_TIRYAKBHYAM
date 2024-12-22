@@ -1,30 +1,28 @@
 /***********************************************************************************
 * Author      : Abdullah Jhatial
 * Designation : Associate Hardware Design Engineer
-* Firm        : 10x Engineers
+* Firm        : 10x Engineers                https://10xengineers.ai/
 * Email       : abdullahjhatial92@gmail.com, abdullah.jhatial@10xengineers.ai
 *  **********************       Design        ***************************************** 
-* This module design is for taking two's complement of output from Multiplier block
-* Depending on oprands signs_signals and precision
+* This module design is for taking two's complement of output from Multiplier block 
+* Depending on the opcode and operands sign signal muxed the output compatable with RISC V
 * Supported precision: 8-bit, 16-bit, 32-bit (00, 01, 10)
 * Supported operations: MUL, MULH, MULHU, MULSU (00, 01, 10, 11)
 * Design for Vector Multiplier based on VEDIC MULTIPLIER USING URDHVA-TIRYAKBHYAM
 ***********************************************************************************/
-   
-
-   
+    
 module tc_64bit_with_precision #(parameter WIDTH = 16) (
-    input logic [63:0] mul_block_output,  // 64-bit output from the multiplication block
-    input logic [1:0] opcode,              // Operation code to determine the operation
-    input logic [1:0] precision,           // Precision control for the output
-    input logic [3:0] sign_signal_a,       // Sign signals for operand A
-    input logic [3:0] sign_signal_b,       // Sign signals for operand B
-    output logic [31:0] mul_out            // 32-bit output of the multiplication
+    input logic [63:0]  mul_block_output,     // 64-bit output from the multiplication block
+    input logic [1:0]   opcode,              // Operation code to determine the operation
+    input logic [1:0]   precision,          // Precision control for the output
+    input logic [3:0]   sign_signal_a,     // Sign signals for operand A
+    input logic [3:0]   sign_signal_b,    // Sign signals for operand B
+    output logic [31:0] mul_out          // 32-bit output of the multiplication
 );
 
     logic [63:0] mul_out_tc;              // Temporary output from the test case
-    logic [63:0] mul_out_mux_sel;          // Mux selection for output
-    logic [3:0] sign_mux_sel;              // Mux selection for sign signals
+    logic [63:0] mul_out_mux_sel;        // Mux selection for output
+    logic [3:0]  sign_mux_sel;          // Mux selection for sign signals
 
     // Instantiate the test case bit stream with precision
     tc_bit_stream_with_precision #(.WIDTH(WIDTH)) tc_64bit_with_precision (

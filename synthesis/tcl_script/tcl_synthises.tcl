@@ -11,8 +11,8 @@
 # ****************************************************************************
 
 
-set_db init_lib_search_path ../12_nm_lib/
-set_db init_hdl_search_path ../../rtl
+set_db init_lib_search_path ../12_nm_lib
+set_db init_hdl_search_path ../../RTL
 read_libs  tcbn12ffcllbwp16p90ssgnp0p9v125c_ccs.lib
 read_hdl -sv -f tcl_xrun.arg
 set_db tns_opto true 
@@ -20,10 +20,8 @@ set_db information_level 9
 
 elaborate v_mult_su 
 
-set_max_fanout 3.0
-read_sdc ../sdc_files/constraint.sdc
-#define_cost_group -name C2C
-#path_group -from [all_registers] -to [all_registers] -group C2C -name C2C
+set_max_fanout 8.0
+read_sdc ../constraint_file/constraint.sdc
 
 set_db syn_generic_effort low
 set_db syn_map_effort low

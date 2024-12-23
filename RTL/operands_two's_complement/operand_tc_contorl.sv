@@ -11,7 +11,7 @@
 * Design for Vector Multiplier based on VEDIC MULTIPLIER USING URDHVA-TIRYAKBHYAM
 **********************************************************************************************************/
 
-module tc_sel_control_logic #(
+module operand_tc_contorl #(
     parameter operand_select = 0
 ) (
     input  logic [1:0] opcode,

@@ -14,11 +14,11 @@
 set_db init_lib_search_path ../12_nm_lib/
 set_db init_hdl_search_path ../../rtl
 read_libs  tcbn12ffcllbwp16p90ssgnp0p9v125c_ccs.lib
-read_hdl -sv { mul_32bit_2stage_opt_design.sv }
+read_hdl -sv -f tcl_xrun.arg
 set_db tns_opto true 
 set_db information_level 9
 
-elaborate 
+elaborate v_mult_su 
 
 set_max_fanout 3.0
 read_sdc ../sdc_files/constraint.sdc

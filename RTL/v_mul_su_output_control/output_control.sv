@@ -11,7 +11,7 @@
 * Design for Vector Multiplier based on VEDIC MULTIPLIER USING URDHVA-TIRYAKBHYAM
 ***********************************************************************************/
     
-module tc_64bit_with_precision #(parameter WIDTH = 16) (
+module output_control #(parameter WIDTH = 16) (
     input logic [63:0]  mul_block_output,     // 64-bit output from the multiplication block
     input logic [1:0]   opcode,              // Operation code to determine the operation
     input logic [1:0]   precision,          // Precision control for the output

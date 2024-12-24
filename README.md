@@ -2,7 +2,7 @@
 
   Autor name : Abdullah Jhatial                                                       
   
-  Frim       : 10xengineers                                                        
+ company        : 10xengineers                                                        
   
   gmai       : abdullahjhatial92@gmail.com   ,abdullah.jhatial@10x.ai                                                  
   

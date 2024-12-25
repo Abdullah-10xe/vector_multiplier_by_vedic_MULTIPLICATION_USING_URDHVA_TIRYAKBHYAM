@@ -61,12 +61,14 @@ task tow_s_8su();
 endtask
 
 // Task to perform multiplication and check results
-task mulhsu();
+task mulhsu_ref();
     // Loop for a large number of iterations
-    for (i = 0; i <= 10000; i++) begin
+       for (i = 0; i <= itrator; i++) begin
+         if(c==0)
+           begin
         operand_b_t = $urandom(); // Generate random operand b
         operand_a_t = $urandom(); // Generate random operand a
-        precision = $random() / 4; // Determine precision
+           end
         @(posedge clk); // Wait for clock edge
         #1; // Delay
         @(posedge clk); // Wait for clock edge
@@ -88,7 +90,7 @@ task mulhsu();
                     pass += 1; // Increment pass count
                 end else begin
                     fail += 1; // Increment fail count
-                    $display("al=%h   mul=%h", al[63:32], mul_out_32); // Display mismatch
+                  $display("  mulsu pre=%h al=%h   mul=%h a=%h ,b=%h   ",precision, al[63:32], mul_out_32, operand_a_t,operand_b_t); // Display mismatch
                 end
             end
 
@@ -174,5 +176,49 @@ task mulhsu();
                 end        
             end
         end
+  end
+  
+endtask
+
+
+task mulhsu();
+  if(c==0)
+    begin
+        itrator=100;
+        precision=2'b00;
+        mulhsu_ref();
+        precision=2'b01;
+        mulhsu_ref();
+        precision=2'b10;
+        mulhsu_ref();
     end
+  else
+    begin
+       itrator=0;
+      for(int j=0;j<=5;j++) begin
+        for (int k=0;k<=5;k++) begin
+          $display("inmulsu");
+                 precision=2'b00;
+                 operand_b_t=cc_8bita[k];
+                 operand_a_t=cc_8bita[j];
+                 mulhsu_ref();
+                 precision=2'b01;
+                 operand_b_t=cc_16bita[k];
+                 operand_a_t=cc_16bita[j];
+                 mulhsu_ref();
+                 precision=2'b10;
+                 operand_b_t=cc_32bita[k];
+                 operand_a_t=cc_32bita[j];
+                 mulhsu_ref();
+               end
+             
+             
+             
+           end
+      
+      
+      
+    end
+
+
 endtask

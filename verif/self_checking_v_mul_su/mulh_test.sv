@@ -108,12 +108,14 @@ task tow_s_8();
     end
   endtask
 
-task mulh();
+task mulh_ref();
     // Loop for testing multiplication
-  for (i = 0; i <= 10000; i++) begin
-        operand_b_t = $urandom(); // Random operand B
-        operand_a_t = $urandom(); // Random operand A
-        precision = $random() / 4; // Random precision value
+  for (i = 0; i <= itrator; i++) begin
+    if(c==0)
+      begin
+        operand_b_t =  $urandom(); // Random operand B
+        operand_a_t =$urandom(); // Random operand A
+      end
 
         @(posedge clk);
         #1;
@@ -137,7 +139,7 @@ task mulh();
                     pass += 1; // Increment pass count
                 end else begin
                     fail += 1; // Increment fail count
-                    $display("al=%h   mul=%h", al[63:32], mul_out_32);
+                  $display("al=%h   mul=%h  precesion=%h", al[63:32], mul_out_32,precision);
                 end
             end
 
@@ -155,7 +157,7 @@ task mulh();
                     pass += 1;
                 end else begin
                     fail += 1;
-                    $display("First 8 bits al=%h   mul=%h", bit_8[15:8], mul_out_32[7:0]);
+                  $display("First 8 bits al=%h   mul=%h precesion=%h", bit_8[15:8], mul_out_32[7:0],precision);
                 end
 
                 // Repeat for the next 8 bits
@@ -167,7 +169,7 @@ task mulh();
                     pass += 1;
                 end else begin
                     fail += 1;
-                    $display("2nd 8 bits al=%h   mul=%h", bit_8[15:8], mul_out_32[15:8]);
+                  $display("2nd 8 bits al=%h   mul=%h precesion=%h", bit_8[15:8], mul_out_32[15:8],precision);
                 end
 
                 // Repeat for the next 8 bits
@@ -180,7 +182,7 @@ task mulh();
                 end else begin
                     fail += 1;
                     al = operand_b_t[23:16] * operand_a_t[23:16];
-                    $display("3rd 8 bits al_test=%h   mul_out=%h    a=%h    b=%h  a*b_actual=%h", bit_8[15:8], mul_out_32, operand_b_t, operand_a_t, al);
+                  $display("3rd 8 bits al_test=%h   mul_out=%h    a=%h    b=%h  a*b_actual=%h   precesion=%h ", bit_8[15:8], mul_out_32, operand_b_t, operand_a_t, al,precision);
                 end
 
                 // Repeat for the last 
@@ -193,7 +195,7 @@ task mulh();
                     pass += 1;
                 end else begin
                     fail += 1;
-                    $display("4th 8 bits al_test=%h   mul_out=%h    a=%h    b=%h  a*b_actual=%h", bit_8[15:8], mul_out_32, operand_b_t, operand_a_t, al);
+                  $display("4th 8 bits al_test=%h   mul_out=%h    a=%h    b=%h  a*b_actual=%h precesion=%h", bit_8[15:8], mul_out_32, operand_b_t, operand_a_t, al,precision);
                 end
             end
 
@@ -211,7 +213,7 @@ task mulh();
                     pass += 1;
                 end else begin
                     fail += 1;
-                    $display("al_test=%h   mul_out=%h    a=%h    b=%h  a*b_actual=%h", bit_16[31:16], mul_out_32, operand_b_t, operand_a_t, al);
+                  $display("al_test=%h   mul_out=%h    a=%h    b=%h  a*b_actual=%h precesion=%h", bit_16[31:16], mul_out_32, operand_b_t, operand_a_t, al,precision);
                 end
 
                 // Multiply upper 16 bits
@@ -225,9 +227,54 @@ task mulh();
                     pass += 1;
                 end else begin
                     fail += 1;
-                    $display("2nd al_test=%h   mul_out=%h    a=%h    b=%h  a*b_actual=%h", bit_16[31:16], mul_out_32, operand_b_t, operand_a_t, bit_16);
+                  $display("2nd al_test=%h   mul_out=%h    a=%h    b=%h  a*b_actual=%h precesion=%h", bit_16[31:16], mul_out_32, operand_b_t, operand_a_t, bit_16,precision);
                 end
             end
         end
-    end
+  end
+    
 endtask
+
+task mulh();
+  if(c==0)
+    begin
+  itrator=100;
+  precision=2'b00;
+  mulh_ref();
+  precision=2'b01;
+  mulh_ref();
+  precision=2'b10;
+  mulh_ref();
+    end
+  else
+    begin
+      itrator=0;
+         for(int j=0;j<=5;j++)
+           begin
+             for (int k=0;k<=5;k++)
+               begin
+                 $display("in");
+                 precision=2'b00;
+                 operand_b_t=cc_8bita[k];
+                 operand_a_t=cc_8bita[j];
+                 mulh_ref();
+                 precision=2'b01;
+                 operand_b_t=cc_16bita[k];
+                 operand_a_t=cc_16bita[j];
+                 mulh_ref();
+                 precision=2'b10;
+                 operand_b_t=cc_32bita[k];
+                 operand_a_t=cc_32bita[j];
+                 mulh_ref();
+               end
+             
+             
+             
+           end
+      
+    end
+  
+  
+endtask
+
+

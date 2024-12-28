@@ -82,10 +82,10 @@ module v_mult_su (
     always_ff @(posedge clk, negedge rst) begin
         if (!rst) begin
             // Reset all signals
-            operand_a <= 0;
-            operand_b <= 0;
-            opcode <= 0;
-            precision <= 0;
+            operand_a <= '0;
+            operand_b <= '0;
+            opcode    <= '0;
+            precision <= '0;
             
         end else begin
             // Update signals on clock edge
@@ -100,16 +100,16 @@ module v_mult_su (
     always_ff @(posedge clk, negedge rst) 
       begin
         if (!rst) begin
-            sign_signal_a <= 0;
-            sign_signal_b <= 0;
-            opcode_pipe1 <= 0;
-            precision_pipe1 <= 0;
+            sign_signal_a    <= '0;
+            sign_signal_b    <= '0;
+            opcode_pipe1     <= '0;
+            precision_pipe1  <= '0;
         end 
         else 
           begin
-            sign_signal_a <= sign_signal_a_w;
-            sign_signal_b <= sign_signal_b_w;
-            opcode_pipe1 <= opcode;
+            sign_signal_a   <= sign_signal_a_w;
+            sign_signal_b   <= sign_signal_b_w;
+            opcode_pipe1    <= opcode;
             precision_pipe1 <= precision;
         end
       end
@@ -117,7 +117,7 @@ module v_mult_su (
     always_ff @(posedge clk, negedge rst) begin
         if (!rst) begin
             
-            mul_out <= 0;
+            mul_out <= '0;
           
         end else 
           begin

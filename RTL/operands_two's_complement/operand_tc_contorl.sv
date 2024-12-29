@@ -1,8 +1,8 @@
 /*********************************************************************************************************
 * Author      : Abdullah Jhatial
 * Designation : Associate Engineer
-* Company       : 10x Engineers                 https://10xengineers.ai/
-* Email       : abdullahjhatial92@gmail.com, abdullah.jhatial@10xengineers.ai
+* Company     : 10x Engineers               https://10xengineers.ai/
+* Email       :  abdullah.jhatial@10xengineers.ai , abdullahjhatial92@gmail.com,
 * *************************************      Design        ************************************************
 * This top module design is for taking two's complement depending on the opcode and precision and MSB bit.
 * Supported precision: 8-bit, 16-bit, 32-bit (00, 01, 10)

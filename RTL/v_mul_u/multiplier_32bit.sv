@@ -1,9 +1,9 @@
 /***********************************************************************************
 * Author      : Abdullah Jhatial
 * Designation : Associate Hardware Design Engineer
-* Firm        : 10x Engineers
+* Company         : 10x Engineers     https://10xengineers.ai/
 * Email       : abdullahjhatial92@gmail.com, abdullah.jhatial@10xengineers.ai
-*  **********************       Design        ***************************************** 
+* **********************       Design        ***************************************** 
 * This moduel   32 bit multiplier block it multiple 32 bit unsigned  numbers 
 * Design for Vector Multiplier based on VEDIC MULTIPLIER USING URDHVA-TIRYAKBHYAM
 ***************************************************************************************/

@@ -1,7 +1,7 @@
 /***********************************************************************************
 * Author      : Abdullah Jhatial
 * Designation : Associate Hardware Design Engineer
-* Firm        : 10x Engineers
+* Company         : 10x Engineers     https://10xengineers.ai/
 * Email       : abdullahjhatial92@gmail.com, abdullah.jhatial@10xengineers.ai
 *  **********************       Design        ***************************************** 
 * This moduel base unit for multiplier block it multiple 2bit numbers 

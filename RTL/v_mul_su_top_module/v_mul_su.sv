@@ -1,7 +1,7 @@
 /*************************************************************************************************************************
 * Author      : Abdullah Jhatial
 * Designation : Associate Hardware Design Engineer
-* Firm        : 10x Engineers
+* Company     : 10x Engineers   
 * Email       : abdullahjhatial92@gmail.com, abdullah.jhatial@10xengineers.ai
 *  **********************       Design        *****************************************************************************
 * This module design is for combining  the all modules :it is top moduel for Vedic Signed-Unsigned 32 bit Vector multiplier   

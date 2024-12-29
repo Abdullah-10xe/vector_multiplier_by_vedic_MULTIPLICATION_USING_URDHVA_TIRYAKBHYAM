@@ -1,8 +1,8 @@
 /***********************************************************************************
 * Author      : Abdullah Jhatial
 * Designation : Associate Hardware Design Engineer
-* Firm        : 10x Engineers                https://10xengineers.ai/
-* Email       : abdullahjhatial92@gmail.com, abdullah.jhatial@10xengineers.ai
+* Company     : 10x Engineers     https://10xengineers.ai/ngineers.ai/
+* Email       :  abdullah.jhatial@10xengineers.ai
 *  **********************       Design        ***************************************** 
 * This module design for parameterized Kogge stone adder
 * Supported precision: 8-bit, 16-bit, 32-bit (00, 01, 10)
@@ -10,7 +10,7 @@
 * Design for Multiplier based on Vedic Algorithim 
 ***********************************************************************************/
 
-// Kogge-Stone Adder Module
+// Kogge-Stone Adder Module   Parameterized 
 
 
 

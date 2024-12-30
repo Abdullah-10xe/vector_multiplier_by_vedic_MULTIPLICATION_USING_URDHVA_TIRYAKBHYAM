@@ -4,7 +4,8 @@ This moudle is design for compile with  Vector multiplier(VEDIC MULTIPLIER USING
 Modified Tow's complement circuit is used (using Prefix calculations )       
 
 ////////////////////////////////////////////////////////////////////////////////////////////////
-_ **For more Detail Reffer to IP document and Slides**
+
+_**For more Detail Reffer to IP document and Slides**
 
 //////////////////////////////////////////////////////////////////////////////////////////////////
 

@@ -42,7 +42,10 @@ module operand_tc_contorl #(
           assign opcode_signal = (opcode == 2'b00 || opcode == 2'b01);
         end
     endgenerate
+     /*
+    mux_select_opm optimal logic : will be updated soon    
 
+     */
     // Mux selecting 8 bits according to precision and opcode
     always_comb begin
         mux_select_opm[0] = (opcode_signal & (

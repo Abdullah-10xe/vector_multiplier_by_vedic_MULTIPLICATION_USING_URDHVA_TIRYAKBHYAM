@@ -1,8 +1,8 @@
 /***********************************************************************************
 * Author      : Abdullah Jhatial
 * Designation : Associate Hardware Design Engineer
-* Firm        : 10x Engineers                 https://10xengineers.ai/
-* Email       : abdullahjhatial92@gmail.com, abdullah.jhatial@10xengineers.ai
+* Company        : 10x Engineers                 https://10xengineers.ai/
+* Email       :  abdullah.jhatial@10xengineers.ai , abdullahjhatial92@gmail.com,
 *  **********************       Design        ***************************************** 
 * This module design is for taking 32bit two's complement depending on the opcode and precision.
 * Supported precision: 8-bit, 16-bit, 32-bit (00, 01, 10)

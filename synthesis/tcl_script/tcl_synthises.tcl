@@ -1,7 +1,7 @@
 # ****************************************************************************
 # * Script Name  : Synthesis 
 # * Developed by : Abdullah Jhatial 
-  * gmail        : abdullah.jhatial@10xengineers.ai 
+#  * gmail        : abdullah.jhatial@10xengineers.ai 
 # * Version      : 1.0         
 # * Firm         : 10xengineers    https://10xengineers.ai/
 # * 

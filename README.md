@@ -3,7 +3,7 @@
   Autor name    : Abdullah Jhatial   
   Desigination  : Associate engineer                                                                                                            
   Company       : 10xengineers     https://10xengineers.ai/                                                   
-  gmail         : abdullah.jhatial@10x.ai   abdullahjhatial92@gmail.com                                               
+  gmail         : abdullah.jhatial@10x.ai                                               
    
   Designed 32 bit Vector mult based on  Vedic multiplication   
   with precision of 8bit ,16bit and 32bit   

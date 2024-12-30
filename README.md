@@ -1,7 +1,7 @@
 *******************************************************************************
 
   Autor name    : Abdullah Jhatial   
-  Desigination  : Associate engineer
+  Desigination  : Associate engineer                                                                                                            
   Company       : 10xengineers     https://10xengineers.ai/                                                   
   gmail         : abdullah.jhatial@10x.ai   abdullahjhatial92@gmail.com                                               
    

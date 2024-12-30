@@ -1,6 +1,7 @@
 # ****************************************************************************
 # * Script Name  : Synthesis 
-# * Developed by : Abdullah Jhatial abdullahjhatial92@gmail.com 
+# * Developed by : Abdullah Jhatial 
+  * gmail        : abdullah.jhatial@10xengineers.ai 
 # * Version      : 1.0         
 # * Firm         : 10xengineers    https://10xengineers.ai/
 # * 
@@ -19,7 +20,6 @@ set_db information_level 9
 
 elaborate v_mult_su 
 
-set_max_fanout 8.0
 read_sdc ../constraint_file/constraints.sdc
 
 set_db syn_generic_effort medium
@@ -31,17 +31,17 @@ syn_map
 syn_opt
 
 #reports
-report_timing > reports/report_timing_v_mult_effm_8fout.rpt
-report_power  > reports/report_power_v_mult_effm_8fout.rpt
-report_area -detail  > reports/report_area_v_mult_effm_8fout.rpt
-report_qor    > reports/report_qor_v_mult_effm_8fout.rpt
+report_timing > reports/report_timing_v_mult_effm.rpt
+report_power  > reports/report_power_v_mult_effm.rpt
+report_area -detail  > reports/report_area_v_mult_effm.rpt
+report_qor    > reports/report_qor_v_mult_effm.rpt
 
 #Outputs
 write_hdl > outputs/MX_netlist.v
 write_sdc > outputs/MX_sdc.sdc
 write_sdf -timescale ns -nonegchecks -recrem split -edges check_edge  -setuphold split > outputs/delays.sdf 
-report_gates  > gates_effm_8fout.rpt
-report_timing -logic_levels 100 >  logic_gate_level_inpaths_effm_3fout.rpt
+report_gates  > gates_effm.rpt
+report_timing -logic_levels 100 >  logic_gate_level_inpaths_effm.rpt
 
 
 

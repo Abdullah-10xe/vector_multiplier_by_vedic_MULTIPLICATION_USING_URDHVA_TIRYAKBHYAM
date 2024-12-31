@@ -30,7 +30,7 @@
  **Number of pass and fail  tests  will be displayed with respect to opcode**
  **if any test fail at any value it will displayed the operands and dut values and expected value**
  **For corner cases make c parameter value 1**
- **Update corners cases by appending more cases in decleared arraies**
+ **Update corners cases by appending more cases in decleared arraies**<br>
  //////////////////////////////////////////////////////////////////////////////////////////////////////////<br>
  ## Signal Descriptions
 

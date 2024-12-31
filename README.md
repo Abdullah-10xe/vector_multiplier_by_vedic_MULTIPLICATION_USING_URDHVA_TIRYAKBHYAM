@@ -26,7 +26,7 @@
  - step1 : command : csh
  - step2 : source cshrc
  - step3 : xrun -f tcl_xrun.arg
-**Number of pass and fail  tests  will be displayed with respect to opcode**
+ **Number of pass and fail  tests  will be displayed with respect to opcode**
 **if any test fail at any value it will displayed the operands and dut values and expected value**
 **For corner cases make c parameter value 1**
 **Update corners cases by appending more cases in decleared arraies**

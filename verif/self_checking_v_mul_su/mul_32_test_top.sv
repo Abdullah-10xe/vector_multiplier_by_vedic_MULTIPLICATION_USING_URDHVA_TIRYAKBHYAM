@@ -51,7 +51,7 @@ module test_32_bit_mul #(parameter c=1) ();
  
   
     // Instantiate the 32-bit multiplication unit
-    v_mult mul_dut (
+   v_mult_su  mul_dut (
         .clk(clk),
         .rst(rst),
         .operand_a_reg(operand_a_t),

@@ -13,7 +13,7 @@
     
 ********************************************************************************************************
 --------------------------------------------------------------------------------------------------------
-<hr style="border: none; border-top: 5px solid black;"                            />
+<hr style="border: none; border-top: 5px solid blue;"                            />
 
 - **Sythesis flow**
    - step0 : cd path/syntheis/tcl_script

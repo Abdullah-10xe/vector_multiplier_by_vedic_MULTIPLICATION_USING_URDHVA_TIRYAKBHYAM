@@ -18,7 +18,7 @@
    Step1:  command : csh
    step2 :  source cshrc    // tool paths
    step3 :  tool_invoke -f  tcl_run.tcl
-  checl
+  for reports check the report folder
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 -**Sim Flow**

@@ -30,7 +30,8 @@
  **For corner cases make c parameter value 1**
  **Update corners cases by appending more cases in decleared arraies** <br>   
  
- *********************************************************************************************************** <br>
+ <hr style="border: none; border-top: 5px solid black;"                                                            />
+
  ## Signal Descriptions
 
 | **Signal**   | **Width** | **Description**                                                                 |
@@ -50,7 +51,7 @@
 
  ******************************************************************************************************************
 
-#For more detail's refer IP Document and slides
+##For more detail's refer IP Document and slides
 
 ********************************************************************************************************************
 ![full_system-Page-11 drawio (3)](https://github.com/user-attachments/assets/2b032dba-a717-4d85-92fc-8acc71fe688b)

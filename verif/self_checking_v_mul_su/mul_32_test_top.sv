@@ -1,5 +1,5 @@
  
-module test_32_bit_mul();
+module test_32_bit_mul #(parameter c=1) ();
     // Control signals
     logic [1:0] opcode;          // Operation code for the multiplication
     logic [1:0] precision;       // Precision level for multiplication
@@ -26,9 +26,10 @@ module test_32_bit_mul();
     int mulhsufail;
     int mulhupass;
     int mulhufail;
+    int itrator; // number  of tests per precision 
    ///////// corner case list//////////////
-  int itrator;
-  int c;
+  
+  
   logic [5:0] [31:0] cc_8bita = {32'h00000000,32'hFFFFFFFF,32'h01010101,
                         32'hF0F0F0F0,32'hd2e4f0af,32'h7f456010};
   
@@ -106,7 +107,7 @@ module test_32_bit_mul();
    //  operand_a_t=32'h0f05561f;  
      // operand_b_t=32'h04b58300;
       /// c == 1 checking corner casses////////
-     c=1;
+     
     opcode=2'b00;
      mul();
      mulpass=pass;

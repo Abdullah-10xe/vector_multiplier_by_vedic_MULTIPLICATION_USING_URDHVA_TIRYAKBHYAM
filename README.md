@@ -9,7 +9,7 @@
   with precision of 8bit ,16bit and 32bit   
   supported instructions are MUL,MULH, MULHU,MULHSU
   3 staged pipelined 
-  operating frequency 2.25 GHz
+  operating frequency 2.2 GHz
     
 **************************************************************************************
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -18,11 +18,13 @@
    - step1:  command : csh
    - step2 :  source cshrc    // tool paths
    - step3 :  tool_invoke -f  tcl_run.tcl
-  for reports check the report folder
+   for reports check the report folder
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 -**Sim Flow**
-Step1:
+Step0: cd path/verif/tcl_xrun
+step1 : command : csh
+step2 :  
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 

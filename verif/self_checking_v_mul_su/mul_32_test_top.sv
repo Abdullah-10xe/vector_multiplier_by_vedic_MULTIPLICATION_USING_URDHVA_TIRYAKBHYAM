@@ -48,22 +48,7 @@ module test_32_bit_mul #(parameter c=1) ();
   
   logic [5:0] [31:0] cc_32bitb ={32'h00000000,32'hFFFFFFFF,32'h01010101,
                         32'hF0F0F0F0,32'hd2e4f0af,32'h7f456010};
-  /*
-  cc_8bita  [5:0] [31:0]  = {32'h00000000,32'hFFFFFFFF,32'h01010101
-                        32'hF0F0F0F0,32'hd2e4f0af,32'h7f456010};
-  
-  cc_8bitb  [5:0] [31:0]  =  {32'h00000000,32'hFFFFFFFF,32'h01010101
-                        32'hF0F0F0F0,32'hd2e4f0af,32'h7f456010};
-  
-  cc_16bita [5:0] [31:0]  =  {32'h00000000,32'hFFFFFFFF,32'h01010101
-                        32'hF0F0F0F0,32'hedf0af01,32'h70ff6014};
-  
-  cc_16bitb [5:0] [31:0]  =  {32'h00000000,32'hFFFFFFFF,32'h01010101
-                        32'hF0F0F0F0,32'hedf0af01,32'h70ff6014};
-  cc_32bita [5:0] [31:0]  ={32'h00000000,32'hFFFFFFFF,32'h01010101
-                        32'hF0F0F0F0,32'hd2e4f0af,32'h7f456010};
-  cc_32bitb [5:0] [31:0]  ={32'h00000000,32'hFFFFFFFF,32'h01010101
-                        32'hF0F0F0F0,32'hd2e4f0af,32'h7f456010};*/
+ 
   
     // Instantiate the 32-bit multiplication unit
     v_mult mul_dut (

@@ -9,11 +9,8 @@
   with precision of 8bit ,16bit and 32bit   
   supported instructions are MUL,MULH, MULHU,MULHSU
   3 staged pipelined 
-  operating frequency 2 GHz
-    
+  operating frequency 2 GHz 
 ********************************************************************************************************
---------------------------------------------------------------------------------------------------------
-<hr style="border: none; border-top: 5px solid blue;"                            />
 
 - **Sythesis flow**
    - step0 : cd path/syntheis/tcl_script
@@ -21,8 +18,7 @@
    - step2 :  source cshrc    // tool paths
    - step3 :  tool_invoke -f  tcl_run.tcl
    **for reports check the report folder**
-
-//////////////////////////////////////////////////////////////////////////////////////////////////////////                                                  
+*********************************************************************************************************                                                  
 - **Sim Flow**
   - step0 : cd path/verif/tcl_xrun
   - step1 : command : csh
@@ -33,7 +29,7 @@
  **if any test fail at any value it will displayed the operands and dut values and expected value**
  **For corner cases make c parameter value 1**
  **Update corners cases by appending more cases in decleared arraies**<br>
-///////////////////////////////////////////////////////////////////////////////////////////////////////////<br>
+***********************************************************************************************************<br>
  ## Signal Descriptions
 
 | **Signal**   | **Width** | **Description**                                                                 |

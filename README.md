@@ -1,4 +1,4 @@
-*******************************************************************************
+********************************************************************************************************
 
   Autor name    : Abdullah Jhatial   
   Desigination  : Associate engineer                                                                                                            
@@ -11,7 +11,7 @@
   3 staged pipelined 
   operating frequency 2 GHz
     
-**************************************************************************************
+********************************************************************************************************
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 - **Sythesis flow**
    - step0 : cd path/syntheis/tcl_script
@@ -31,7 +31,7 @@
  **if any test fail at any value it will displayed the operands and dut values and expected value**
  **For corner cases make c parameter value 1**
  **Update corners cases by appending more cases in decleared arraies**<br>
- //////////////////////////////////////////////////////////////////////////////////////////////////////////<br>
+///////////////////////////////////////////////////////////////////////////////////////////////////////////<br>
  ## Signal Descriptions
 
 | **Signal**   | **Width** | **Description**                                                                 |

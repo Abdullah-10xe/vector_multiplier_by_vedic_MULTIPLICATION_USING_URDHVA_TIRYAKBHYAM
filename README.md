@@ -31,7 +31,24 @@
  **if any test fail at any value it will displayed the operands and dut values and expected value**
  **For corner cases make c parameter value 1**
  **Update corners cases by appending more cases in decleared arraies**
- 
+ //////////////////////////////////////////////////////////////////////////////////////////////////////////<br>
+ ## Signal Descriptions
+
+| **Signal**   | **Width** | **Description**                                                                 |
+|--------------|-----------|---------------------------------------------------------------------------------|
+| `operand_a`  | 32-bit    | Operand_a is a 32-bit vector. Its element sizes interpret based on the precision signal. |
+| `operand_b`  | 32-bit    | Operand_b is a 32-bit vector. Its element sizes interpret based on the precision signal. |
+| `precision`  | 2-bit     | Precision signal defines the element size in the vector. Supported precisions are:  |
+|              |           | - `00`: 4 byte size elements                                                   |
+|              |           | - `01`: 2 half-word size elements                                              |
+|              |           | - `10`: Word size elements                                                     |
+| `opcode`     | 2-bit     | Opcode signal defines the type of operation. Supported operations are:         |
+|              |           | - `00`: MUL                                                                    |
+|              |           | - `01`: MULH                                                                   |
+|              |           | - `10`: MULHU                                                                  |
+|              |           | - `11`: MULHSU                                                                 |
+| `mul_out`    | 32-bit    | Mul_out is the result of the operation as determined by the precision and opcode signals. |
+
  //////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 - **For more detail's refer IP Document and slides**

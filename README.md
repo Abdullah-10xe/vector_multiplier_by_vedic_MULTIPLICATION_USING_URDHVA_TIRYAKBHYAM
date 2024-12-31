@@ -48,7 +48,7 @@
 | `mul_out`    | 32-bit    | Mul_out is the result of the operation as determined by the precision and opcode signals. |
 
  
-*************************************************************************************************************
+
 - **For more detail's refer IP Document and slides**
 
 ****************************************************************************************************************

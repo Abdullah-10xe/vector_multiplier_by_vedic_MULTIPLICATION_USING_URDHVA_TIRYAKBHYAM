@@ -14,10 +14,10 @@
 **************************************************************************************
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 - **Sythesis flow**
-   -step0 : cd path/syntheis/tcl_script
-   -step1:  command : csh
-   -step2 :  source cshrc    // tool paths
-   -step3 :  tool_invoke -f  tcl_run.tcl
+   - step0 : cd path/syntheis/tcl_script
+   - step1:  command : csh
+   - step2 :  source cshrc    // tool paths
+   - step3 :  tool_invoke -f  tcl_run.tcl
   for reports check the report folder
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
